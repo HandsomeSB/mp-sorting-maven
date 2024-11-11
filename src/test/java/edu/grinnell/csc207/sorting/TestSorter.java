@@ -136,8 +136,9 @@ public class TestSorter {
 
     for(int j = 0; j < NUMTRIALS; ++j) {
       Integer[] original = new Integer[SIZE];
+      Integer num = rand.nextInt(-(Integer.MAX_VALUE - 1), Integer.MAX_VALUE);
       for(int i = 0; i < SIZE; ++i) { 
-        original[i] = rand.nextInt(-(Integer.MAX_VALUE - 1), Integer.MAX_VALUE);
+        original[i] = num;
       } // for
 
       Integer[] expected = original.clone();
