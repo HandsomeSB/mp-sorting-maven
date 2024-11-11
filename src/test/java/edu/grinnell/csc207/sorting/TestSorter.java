@@ -3,6 +3,7 @@ package edu.grinnell.csc207.sorting;
 import edu.grinnell.csc207.util.ArrayUtils;
 
 import java.util.Arrays;
+import java.util.Random;
 
 import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -120,4 +121,28 @@ public class TestSorter {
     ArrayUtils.permute(original);
     assertSorts(expected, original, intSorter);
   } // permutedIntegers
+
+  /**
+   * Ensure that array with the same number works correctly.
+   */
+  @Test
+  public void sameNumberIntegerTest() { 
+    Random rand = new Random();
+    int SIZE = 100;
+    int NUMTRIALS = 10;
+    if (intSorter == null) { 
+      return;
+    } // if
+
+    for(int j = 0; j < NUMTRIALS; ++j) {
+      Integer[] original = new Integer[SIZE];
+      for(int i = 0; i < SIZE; ++i) { 
+        original[i] = rand.nextInt(-(Integer.MAX_VALUE - 1), Integer.MAX_VALUE);
+      } // for
+
+      Integer[] expected = original.clone();
+      assertSorts(expected, original, intSorter);
+    } // for
+
+  } // sameNumberIntegerTest()
 } // class TestSorter
