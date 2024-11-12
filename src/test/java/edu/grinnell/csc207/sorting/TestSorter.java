@@ -146,4 +146,67 @@ public class TestSorter {
     } // for
 
   } // sameNumberIntegerTest()
+
+  /**
+   * Test negative numbers in permuted array
+   */
+  @Test
+  public void negativeNumberIntegerTest() { 
+    int SIZE = 100; 
+    if (null == intSorter) { 
+      return; 
+    } // if
+    Integer[] original = new Integer[SIZE];
+    for (int i = 0; i < SIZE; i++) {
+      original[i] = (-SIZE) + i;
+    } // for
+    Integer[] expected = original.clone();
+    ArrayUtils.permute(original);
+    assertSorts(expected, original, intSorter);
+  }
+
+  /**
+   * Test negative numbers in permuted array
+   */
+  @Test
+  public void combinationNumberIntegerTest() { 
+    int SIZE = 100; 
+    if (null == intSorter) { 
+      return; 
+    } // if
+    Integer[] original = new Integer[SIZE];
+    for (int i = 0; i < SIZE; i++) {
+      original[i] = (-SIZE / 2) + i;
+    } // for
+    Integer[] expected = original.clone();
+    ArrayUtils.permute(original);
+    assertSorts(expected, original, intSorter);
+  }
+
+  /**
+   * Test empty integer array
+   */
+  @Test
+  public void emptyArrayIntegerTest() { 
+    if (null == intSorter) { 
+      return; 
+    } // if
+    Integer[] original = new Integer[0];
+    Integer[] expected = original.clone();
+    assertSorts(expected, original, intSorter);
+  }
+
+  /**
+   * Test empty String array
+   */
+  @Test
+  public void emptyArrayStringTest() { 
+    if (null == stringSorter) { 
+      return; 
+    } // if
+    String[] original = new String[0];
+    String[] expected = original.clone();
+    assertSorts(expected, original, stringSorter);
+  }
+
 } // class TestSorter
