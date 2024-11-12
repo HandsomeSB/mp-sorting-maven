@@ -5,20 +5,15 @@ import java.util.Comparator;
 /**
  * Something that sorts using insertion sort.
  *
- * @param <T>
- *   The types of values that are sorted.
- *
+ * @param <T> The types of values that are sorted.
  * @author Samuel A. Rebelsky
  */
-
 public class InsertionSorter<T> implements Sorter<T> {
   // +--------+------------------------------------------------------
   // | Fields |
   // +--------+
 
-  /**
-   * The way in which elements are ordered.
-   */
+  /** The way in which elements are ordered. */
   Comparator<? super T> order;
 
   // +--------------+------------------------------------------------
@@ -28,9 +23,7 @@ public class InsertionSorter<T> implements Sorter<T> {
   /**
    * Create a sorter using a particular comparator.
    *
-   * @param comparator
-   *   The order in which elements in the array should be ordered
-   *   after sorting.
+   * @param comparator The order in which elements in the array should be ordered after sorting.
    */
   public InsertionSorter(Comparator<? super T> comparator) {
     this.order = comparator;
@@ -43,37 +36,31 @@ public class InsertionSorter<T> implements Sorter<T> {
   /**
    * Sort an array in place using insertion sort.
    *
-   * @param values
-   *   an array to sort.
-   *
-   * @post
-   *   The array has been sorted according to some order (often
-   *   one given to the constructor).
-   * @post
-   *   For all i, 0 &lt; i &lt; values.length,
-   *     order.compare(values[i-1], values[i]) &lt;= 0
+   * @param values an array to sort.
+   * @post The array has been sorted according to some order (often one given to the constructor).
+   * @post For all i, 0 &lt; i &lt; values.length, order.compare(values[i-1], values[i]) &lt;= 0
    */
   @Override
   public void sort(T[] values) {
-    for(int i = 1; i < values.length; ++i) { 
+    for (int i = 1; i < values.length; ++i) {
       insert(values, i);
     }
-
   } // sort(T[])
 
   /**
-   * Insert the value at index beginning into a sorted position 
-   * within the array slice values[0:beginning]. 
+   * Insert the value at index beginning into a sorted position within the array slice
+   * values[0:beginning].
+   *
    * @param values Array of values to sort
    * @param beginning Beginning of unsorted section
    */
-  private void insert(T[] values, int beginning) { 
+  private void insert(T[] values, int beginning) {
     T val = values[beginning];
     int j = beginning - 1;
-    while(j >= 0 && order.compare(values[j], val) > 0) { 
-      values[j+1] = values[j];
+    while (j >= 0 && order.compare(values[j], val) > 0) {
+      values[j + 1] = values[j];
       j--;
     } // while
-    values[j+1] = val;
+    values[j + 1] = val;
   }
 } // class InsertionSorter

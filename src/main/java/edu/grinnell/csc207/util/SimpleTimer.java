@@ -10,23 +10,17 @@ public class SimpleTimer {
   // | Fields |
   // +--------+
 
-  /**
-   * The time the timer started.
-   */
-  long start;    
+  /** The time the timer started. */
+  long start;
 
-  /**
-   * The total elapsed time.
-   */
+  /** The total elapsed time. */
   long elapsed = 0;
 
   // +--------------+------------------------------------------------
   // | Constructors |
   // +--------------+
 
-  /**
-   * Create a new timer.
-   */
+  /** Create a new timer. */
   public SimpleTimer() {
     this.restart();
   } // Timer()
@@ -38,8 +32,7 @@ public class SimpleTimer {
   /**
    * Determine how much time has elapsed.
    *
-   * @return The number of milliseconds that have ellapsed since
-   *   the timer started.
+   * @return The number of milliseconds that have ellapsed since the timer started.
    */
   public long elapsed() {
     return this.elapsed + System.currentTimeMillis() - this.start;
@@ -48,8 +41,7 @@ public class SimpleTimer {
   /**
    * Stop the timer.
    *
-   * @return The number of milliseconds that have ellapsed since
-   *   the timer started.
+   * @return The number of milliseconds that have ellapsed since the timer started.
    */
   public long stop() {
     this.elapsed = this.elapsed();
@@ -57,9 +49,7 @@ public class SimpleTimer {
     return this.elapsed;
   } // stop()
 
-  /**
-   * Restart the timer.
-   */
+  /** Restart the timer. */
   public void restart() {
     start = System.currentTimeMillis();
   } // restart()
