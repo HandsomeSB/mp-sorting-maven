@@ -48,11 +48,11 @@ public class SelectionSorter<T> implements Sorter<T> {
       int minIndex = select(values, index);
       ArrayUtils.swap(values, minIndex, index);
       index++;
-    }
+    } // while
   } // sort(T[])
 
   /**
-   * Finds the minimum value within the array starting from beginning and return the index
+   * Finds the minimum value within the array starting from beginning and return the index.
    *
    * @param values The list of values
    * @param beginning Index to starting searching from
@@ -66,5 +66,5 @@ public class SelectionSorter<T> implements Sorter<T> {
       } // if
     } // for
     return minIndex;
-  }
+  } // select(T[], int)
 } // class SelectionSorter

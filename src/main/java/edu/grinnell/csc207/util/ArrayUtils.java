@@ -57,6 +57,7 @@ public class ArrayUtils {
    * @param values The array.
    * @param lb The lower bound of the section of interest.
    * @param ub The upper bound of the section of interest.
+   * @return The converted string.
    */
   public static <T> String toString(T[] values, int lb, int ub) {
     if (lb >= ub) {

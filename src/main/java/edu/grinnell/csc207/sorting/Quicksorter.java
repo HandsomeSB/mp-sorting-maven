@@ -64,37 +64,41 @@ public class Quicksorter<T> implements Sorter<T> {
       sort(values, lowerBound, dnfBounds[0]);
       sort(values, dnfBounds[1], higherBound);
     } // if at least 2 values between low and high
-  }
+  } // if
 
   /**
-   * Apply the Dutch national flag algorithm within values between lowerBound and higherBound. 
-   * Organizes data into <p>
-   * less than  | equal to  | greater than
+   * Apply the Dutch national flag algorithm within values between lowerBound and higherBound.
+   * Organizes data into
+   *
+   * <p>less than | equal to | greater than
+   *
    * @param values Array of values to organize
    * @param lowerBound Lower bound
    * @param higherBound Higher bound
    * @return Array of indices that separates the three sections
    */
-  private int[] dnf(T[] values, int lowerBound, int higherBound) { 
+  private int[] dnf(T[] values, int lowerBound, int higherBound) {
     // less than  | equal to  | unprocessed | greater than
     //            r           w             b
 
-    int r = lowerBound, w = lowerBound, b = higherBound;
+    int r = lowerBound;
+    int w = lowerBound;
+    int b = higherBound;
 
     int pivot = rand.nextInt(lowerBound, higherBound);
     T pivotVal = values[pivot];
 
-    while(b > w) { 
+    while (b > w) {
       T unprocessedValue = values[w];
-      if(order.compare(unprocessedValue, pivotVal) > 0) { 
+      if (order.compare(unprocessedValue, pivotVal) > 0) {
         ArrayUtils.swap(values, w, --b);
-      } else if(order.compare(unprocessedValue, pivotVal) == 0) {
+      } else if (order.compare(unprocessedValue, pivotVal) == 0) {
         w++;
-      } else { 
+      } else {
         ArrayUtils.swap(values, w++, r++);
       } // if else
     } // while
 
     return new int[] {r, w};
-  }
+  } // while
 } // class Quicksorter

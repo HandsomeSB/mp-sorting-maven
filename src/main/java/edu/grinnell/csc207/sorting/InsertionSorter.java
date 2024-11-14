@@ -44,7 +44,7 @@ public class InsertionSorter<T> implements Sorter<T> {
   public void sort(T[] values) {
     for (int i = 1; i < values.length; ++i) {
       insert(values, i);
-    }
+    } // for
   } // sort(T[])
 
   /**
@@ -62,5 +62,5 @@ public class InsertionSorter<T> implements Sorter<T> {
       j--;
     } // while
     values[j + 1] = val;
-  }
+  } // insert(T[], int)
 } // class InsertionSorter

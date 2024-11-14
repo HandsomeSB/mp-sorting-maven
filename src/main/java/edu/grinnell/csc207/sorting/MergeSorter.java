@@ -43,49 +43,9 @@ public class MergeSorter<T> implements Sorter<T> {
   @Override
   @SuppressWarnings("unchecked")
   public void sort(T[] values) {
-    // T[] newVals = mergeSort(values, 0, values.length);
-    // for(int i = 0; i < values.length; ++i) {
-    //   values[i] = newVals[i];
-    // }
-
     T[] helper = (T[]) new Object[values.length];
     sort(values, 0, values.length, helper);
   } // sort(T[])
-
-  @SuppressWarnings("unchecked")
-  private T[] mergeSort(T[] values, int low, int high) {
-    T[] ret = (T[]) new Object[high - low];
-
-    if (high - low == 1) {
-      ret[0] = values[low];
-    }
-
-    if (high - low > 1) {
-      int mid = (high - low) / 2 + low;
-      T[] first = mergeSort(values, low, mid);
-      T[] second = mergeSort(values, mid, high);
-      int i = 0, j = 0;
-      while (i < first.length && j < second.length) {
-        if (order.compare(first[i], second[j]) < 0) {
-          ret[i + j] = first[i];
-          i++;
-        } else {
-          ret[i + j] = second[j];
-          j++;
-        }
-      }
-
-      for (int k = i; k < first.length; ++k) {
-        ret[k + j] = first[k];
-      }
-
-      for (int k = j; k < second.length; ++k) {
-        ret[k + i] = second[k];
-      }
-    }
-
-    return ret;
-  }
 
   /**
    * Sort an array in place using merge sort.
@@ -102,7 +62,7 @@ public class MergeSorter<T> implements Sorter<T> {
       sort(values, mid, high, helper); // sort right
       merge(values, low, mid, high, helper); // merge in place
     } // if section length > 1
-  }
+  } // sort(T[], int, int, T[])
 
   /**
    * Merging two sorted section of array into one sorted section. The helper array is used as a
@@ -126,7 +86,8 @@ public class MergeSorter<T> implements Sorter<T> {
     int rightStart = mid;
 
     // Double interator, while neither sides used all their values
-    int i = 0, j = 0;
+    int i = 0;
+    int j = 0;
     while (i < leftLength && j < rightLength) {
       if (order.compare(values[leftStart + i], values[rightStart + j])
           < 0) { // if left is less than right

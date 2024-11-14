@@ -18,6 +18,7 @@ public class SortExperiments {
   /**
    * Run an experiment on a single array.
    *
+   * @param <T> Type of values to sort
    * @param pen For printing out info.
    * @param values The array of values to sort.
    * @param sorter The sorter to use.
