@@ -59,41 +59,42 @@ public class Quicksorter<T> implements Sorter<T> {
    */
   private void sort(T[] values, int lowerBound, int higherBound) {
     if (lowerBound < higherBound - 1) {
-      int pivotIndex = partition(values, lowerBound, higherBound);
+      int[] dnfBounds = dnf(values, lowerBound, higherBound);
 
-      sort(values, lowerBound, pivotIndex);
-      sort(values, pivotIndex + 1, higherBound);
+      sort(values, lowerBound, dnfBounds[0]);
+      sort(values, dnfBounds[1], higherBound);
     } // if at least 2 values between low and high
   }
 
   /**
-   * Partition the values between lower bound and higher bound. Chooses a pivot. Values less than
-   * the pivot will be moved towards the left, values greater than the pivot will be moved towards
-   * the right.
-   *
-   * @param values The list of values
+   * Apply the Dutch national flag algorithm within values between lowerBound and higherBound. 
+   * Organizes data into <p>
+   * less than  | equal to  | greater than
+   * @param values Array of values to organize
    * @param lowerBound Lower bound
    * @param higherBound Higher bound
-   * @return Index of pivot / partition
+   * @return Array of indices that separates the three sections
    */
-  private int partition(T[] values, int lowerBound, int higherBound) {
+  private int[] dnf(T[] values, int lowerBound, int higherBound) { 
+    // less than  | equal to  | unprocessed | greater than
+    //            r           w             b
+
+    int r = lowerBound, w = lowerBound, b = higherBound;
+
     int pivot = rand.nextInt(lowerBound, higherBound);
+    T pivotVal = values[pivot];
 
-    // Move pivot to the end
-    ArrayUtils.swap(values, pivot, higherBound - 1);
+    while(b > w) { 
+      T unprocessedValue = values[w];
+      if(order.compare(unprocessedValue, pivotVal) > 0) { 
+        ArrayUtils.swap(values, w, --b);
+      } else if(order.compare(unprocessedValue, pivotVal) == 0) {
+        w++;
+      } else { 
+        ArrayUtils.swap(values, w++, r++);
+      } // if else
+    } // while
 
-    // values[lowerBound:leftPartIndex] < values[pivot]
-    int leftPartIndex = lowerBound;
-    for (int i = lowerBound; i < higherBound - 1; ++i) {
-      if (order.compare(values[i], values[higherBound - 1]) < 0) {
-        ArrayUtils.swap(values, leftPartIndex, i);
-        leftPartIndex++;
-      } // if value less than pivot
-    } // for values between lower and higher
-
-    // Move pivot back
-    ArrayUtils.swap(values, higherBound - 1, leftPartIndex);
-
-    return leftPartIndex;
-  } // partition(T[], int, int)
+    return new int[] {r, w};
+  }
 } // class Quicksorter
