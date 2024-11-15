@@ -47,7 +47,7 @@ public class SortExperiments {
    * Main.
    * @param args args
    */
-  public static void main(String args[]) {
+  public static void main(String[] args) {
     Integer[] in = {
       17, 47, 97, 94, 85, 84, 95, 18, 39, 63, 8, 90, 62, 33, 76, 89, 50, 71, 75, 74, 78, 1, 3, 37,
       14, 45, 12, 69, 10, 77, 38, 26, 25, 36, 65, 20, 91, 60, 27, 2, 44, 13, 80, 0, 98, 73, 79, 67,
@@ -59,5 +59,5 @@ public class SortExperiments {
         new PrintWriter(System.out, true),
         in,
         new ZhuHarrisonSorter<Integer>((x, y) -> x.compareTo(y)));
-  }
+  } // main(String[])
 } // class SortExperiments
