@@ -1,7 +1,7 @@
 package edu.grinnell.csc207.experiments;
 
-import edu.grinnell.csc207.sorting.MergeSorter;
 import edu.grinnell.csc207.sorting.Sorter;
+import edu.grinnell.csc207.sorting.ZhuHarrisonSorter;
 import java.io.PrintWriter;
 import java.util.Arrays;
 
@@ -43,6 +43,10 @@ public class SortExperiments {
     oneExperiment(pen, new Integer[] {28, 37, 20, 55, 10, 17, 9, 17}, sorter);
   } // sortExperiments(PrintWriter, Sorter<String>)
 
+  /**
+   * Main.
+   * @param args args
+   */
   public static void main(String args[]) {
     Integer[] in = {
       17, 47, 97, 94, 85, 84, 95, 18, 39, 63, 8, 90, 62, 33, 76, 89, 50, 71, 75, 74, 78, 1, 3, 37,
@@ -52,6 +56,8 @@ public class SortExperiments {
       56, 15, 93, 72
     };
     oneExperiment(
-        new PrintWriter(System.out, true), in, new MergeSorter<Integer>((x, y) -> x.compareTo(y)));
+        new PrintWriter(System.out, true),
+        in,
+        new ZhuHarrisonSorter<Integer>((x, y) -> x.compareTo(y)));
   }
 } // class SortExperiments

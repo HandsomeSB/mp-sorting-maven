@@ -50,6 +50,19 @@ public class ArrayUtils {
   } // permute(T[])
 
   /**
+   * Reverse a section of the array between lower and higher. Inclusive
+   * @param <T> Type of array.
+   * @param values The values array to reverse
+   * @param lower lower bound
+   * @param higher higher bound
+   */
+  public static <T> void reverse(T[] values, int lower, int higher) {
+    for (int i = lower; i < (higher + lower) / 2; i++) {
+      ArrayUtils.swap(values, higher - i, i);
+    } // for
+  } // reverse(T[], int, int)
+
+  /**
    * Convert a subset of an array to a string. Intended mostly for debug printing in which we need
    * to keep track of parts of an array.
    *

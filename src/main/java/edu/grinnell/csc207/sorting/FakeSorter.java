@@ -16,14 +16,14 @@ public class FakeSorter<T> implements Sorter<T> {
   // +--------------+
 
   /** Create a sorter. */
-  public FakeSorter() {} // FakeSorter()
+  public FakeSorter() { } // FakeSorter()
 
   /**
    * Create a sorter using a particular comparator (included for consistency with other sorters).
    *
    * @param order The order in which elements in the array should be ordered after sorting.
    */
-  public FakeSorter(Comparator<? super T> order) {} // FakeSorter(Comparator)
+  public FakeSorter(Comparator<? super T> order) { } // FakeSorter(Comparator)
 
   // +---------+-----------------------------------------------------
   // | Methods |
